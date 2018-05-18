@@ -12,6 +12,6 @@ public class ModItems {
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
 	// Items
-	public static final Item PINK_RUBY = new ItemBase("pink ruby");
+	public static final Item PINK_RUBY = new ItemBase("pink_ruby");
 	
 }

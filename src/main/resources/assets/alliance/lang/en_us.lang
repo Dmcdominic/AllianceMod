@@ -1,3 +1,6 @@
 
 // Items
 item.pink_ruby.name=Pink Ruby
+
+// Blocks
+tile.pink_ruby_block.name=Block of Pink Ruby
