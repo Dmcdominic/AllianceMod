@@ -1,0 +1,14 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": [
+    { "item": "alliance:packed_dirt" },
+    { "item": "alliance:pink_ruby" },
+    { "item": "alliance:pink_ruby" }
+    ],
+
+    "result": {
+        "item": "alliance:pink_ruby_block",
+        "count": 1
+    }
+}

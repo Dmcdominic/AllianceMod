@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern": [
+        "IRI",
+        " r ",
+        "iii"
+    ],
+    
+    "key": {
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "R": {
+        	"item":	"alliance:pink_ruby_block"
+        },
+        "r": {
+            "item": "alliance:pink_ruby"
+        },
+        "i": {
+        	"item":	"minecraft:iron_ingot"
+        }
+    },
+    
+    "result": {
+        "item": "alliance:pink_ruby_block",
+        "count": 1
+    }
+}
