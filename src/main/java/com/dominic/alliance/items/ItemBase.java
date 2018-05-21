@@ -12,7 +12,7 @@ public class ItemBase extends Item implements HasModel {
 	public ItemBase(String name) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.MATERIALS); // TODO - Change this later? Make own tab?
+		setCreativeTab(CreativeTabs.MATERIALS); // TODO - Change this later? Make own tab? Or just use this as default
 		
 		ModItems.ITEMS.add(this);
 	}

@@ -23,12 +23,12 @@ public class Main {
 	
 	@EventHandler
 	public static void PreInit(FMLPreInitializationEvent event) {
-		
+		ModSmeltingRecipes.init();
 	}
 	
 	@EventHandler
 	public static void Init(FMLInitializationEvent event) {
-		ModSmeltingRecipes.init();
+		
 	}
 	
 	@EventHandler
