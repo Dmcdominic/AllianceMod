@@ -1,5 +1,6 @@
 package com.dominic.alliance;
 
+import com.dominic.alliance.init.ModSmeltingRecipes;
 import com.dominic.alliance.proxy.CommonProxy;
 import com.dominic.alliance.util.Reference;
 
@@ -27,7 +28,7 @@ public class Main {
 	
 	@EventHandler
 	public static void Init(FMLInitializationEvent event) {
-		
+		ModSmeltingRecipes.init();
 	}
 	
 	@EventHandler
