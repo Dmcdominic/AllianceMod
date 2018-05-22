@@ -2,7 +2,7 @@ package com.dominic.alliance.util.handlers;
 
 import com.dominic.alliance.init.ModBlocks;
 import com.dominic.alliance.init.ModItems;
-import com.dominic.alliance.util.HasModel;
+import com.dominic.alliance.util.IHasModel;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -27,14 +27,14 @@ public class RegistryHandler {
 	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event) {
 		for (Item item : ModItems.ITEMS) {
-			if (item instanceof HasModel) {
-				((HasModel)item).registerModels();
+			if (item instanceof IHasModel) {
+				((IHasModel)item).registerModels();
 			}
 		}
 		
 		for (Block block : ModBlocks.BLOCKS) {
-			if (block instanceof HasModel) {
-				((HasModel)block).registerModels();
+			if (block instanceof IHasModel) {
+				((IHasModel)block).registerModels();
 			}
 		}
 	}

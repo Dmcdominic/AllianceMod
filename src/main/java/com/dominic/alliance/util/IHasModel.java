@@ -1,6 +1,6 @@
 package com.dominic.alliance.util;
 
-public interface HasModel {
+public interface IHasModel {
 	
 	public void registerModels();
 	

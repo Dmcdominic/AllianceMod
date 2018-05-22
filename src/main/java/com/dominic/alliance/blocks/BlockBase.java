@@ -3,7 +3,7 @@ package com.dominic.alliance.blocks;
 import com.dominic.alliance.Main;
 import com.dominic.alliance.init.ModBlocks;
 import com.dominic.alliance.init.ModItems;
-import com.dominic.alliance.util.HasModel;
+import com.dominic.alliance.util.IHasModel;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,7 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 
-public class BlockBase extends Block implements HasModel {
+public class BlockBase extends Block implements IHasModel {
 	
 	public BlockBase(String name, Material material) {
 		super(material);
