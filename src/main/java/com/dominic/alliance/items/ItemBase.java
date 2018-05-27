@@ -12,7 +12,8 @@ public class ItemBase extends Item implements IHasModel {
 	public ItemBase(String name) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setCreativeTab(CreativeTabs.MATERIALS); // TODO - Change this later? Make own tab? Or just use this as default
+		//setCreativeTab(CreativeTabs.MATERIALS);
+		setCreativeTab(ModItems.tabAllianceMod);
 		
 		ModItems.ITEMS.add(this);
 	}
