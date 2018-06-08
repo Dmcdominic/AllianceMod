@@ -2,6 +2,7 @@ package com.dominic.alliance;
 
 import com.dominic.alliance.init.ModSmeltingRecipes;
 import com.dominic.alliance.proxy.CommonProxy;
+import com.dominic.alliance.tileentity.TileEntityQuadChest;
 import com.dominic.alliance.util.Reference;
 import com.dominic.alliance.worldgen.OreGen;
 
@@ -31,11 +32,17 @@ public class Main {
 	@EventHandler
 	public static void Init(FMLInitializationEvent event) {
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
+		RegisterTileEntities();
 	}
 	
 	@EventHandler
 	public static void PostInit(FMLPostInitializationEvent event) {
 		
+	}
+	
+	// Register all tile-entities here
+	private static void RegisterTileEntities() {
+		GameRegistry.registerTileEntity(TileEntityQuadChest.class, Reference.MOD_ID + "TileEntityQuadChest");
 	}
 	
 }
