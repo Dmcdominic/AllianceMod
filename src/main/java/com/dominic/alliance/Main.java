@@ -31,6 +31,8 @@ public class Main {
 	
 	@EventHandler
 	public static void Init(FMLInitializationEvent event) {
+		proxy.init();
+		
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 		RegisterTileEntities();
 	}

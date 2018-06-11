@@ -33,5 +33,10 @@ public class ContainerQuadChest extends ContainerWithPlayerInv {
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int fromSlot) {
 	    return super.transferStackWithHandler(playerIn, fromSlot, this.handler);
 	}
+	
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return te.canInteractWith(player);
+	}
 
 }

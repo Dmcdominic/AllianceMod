@@ -9,3 +9,6 @@ tile.pink_ruby_block.name=Block of Pink Ruby
 tile.packed_dirt.name=Packed Dirt
 tile.double_packed_dirt.name=Double Packed Dirt
 tile.quad_chest.name=Quad Chest
+
+// Containers
+container.quad_chest=Quad Chest

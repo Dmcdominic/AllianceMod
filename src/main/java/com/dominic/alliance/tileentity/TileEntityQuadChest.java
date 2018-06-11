@@ -8,20 +8,21 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityQuadChest extends TileEntity implements ICapabilityProvider {
+public class TileEntityQuadChest extends TileEntityWithInventory {
 
-	private ItemStackHandler handler;
+	public static final int SIZE = 16;
+	
 	private int someCounter;
 	
+	// Constructor
 	public TileEntityQuadChest() {
-		handler = new ItemStackHandler(16);
+		super(SIZE);
 		someCounter = 0;
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
-		compound.setTag("ItemStackHandler", this.handler.serializeNBT());
 		compound.setInteger("someCounter", this.someCounter);
 		return compound;
 	}
@@ -29,24 +30,7 @@ public class TileEntityQuadChest extends TileEntity implements ICapabilityProvid
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-		this.handler.deserializeNBT(compound.getCompoundTag("ItemStackHandler"));
 		this.someCounter = compound.getInteger("someCounter");
-	}
-	
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			return (T) this.handler;
-		}
-		return super.getCapability(capability, facing);
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-			return true;
-		}
-		return super.hasCapability(capability, facing);
 	}
 	
 }
