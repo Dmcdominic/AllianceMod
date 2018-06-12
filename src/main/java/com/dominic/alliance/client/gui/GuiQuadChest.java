@@ -16,7 +16,7 @@ public class GuiQuadChest extends GuiContainer {
 	private TileEntityQuadChest te;
 	private IInventory playerInv;
 	
-	private static final ResourceLocation background = new ResourceLocation(Reference.MOD_ID, "textures/gui/quad_chest.png");
+	private static final ResourceLocation background = new ResourceLocation(Reference.MOD_ID, "textures/gui/gui_quad_chest.png");
 	
 	public GuiQuadChest(IInventory playerInv, TileEntityQuadChest te) {
 		super(new ContainerQuadChest(playerInv, te));
