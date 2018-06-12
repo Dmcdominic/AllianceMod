@@ -10,7 +10,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityQuadChest extends TileEntityWithInventory {
 
-	public static final int SIZE = 16;
+	public static final int SIZE = 36;
 	
 	private int someCounter;
 	
