@@ -1,7 +1,5 @@
 package com.dominic.alliance.container;
 
-import com.dominic.alliance.tileentity.TileEntityQuadChest;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -44,11 +42,11 @@ public class ContainerWithPlayerInv extends Container {
 	        previous = current.copy();
 
 	        if (fromSlot < handler.getSlots()) {
-	            // From the block breaker inventory to player's inventory
+	            // From the block's inventory to player's inventory
 	            if (!this.mergeItemStack(current, handler.getSlots(), handler.getSlots() + 36, true))
 	                return ItemStack.EMPTY;
 	        } else {
-	            // From the player's inventory to block breaker's inventory
+	            // From the player's inventory to block's inventory
 	            if (!this.mergeItemStack(current, 0, handler.getSlots(), false))
 	                return ItemStack.EMPTY;
 	        }

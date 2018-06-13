@@ -4,7 +4,6 @@ import com.dominic.alliance.tileentity.TileEntityQuadChest;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -12,10 +11,10 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerQuadChest extends ContainerWithPlayerInv {
 	
-	private static final int invX = 28;
-	private static final int invY = 16;
-	private static final int playerInvX = 8;
-	private static final int playerInvY = 149;
+	public static final int invX = 28;
+	public static final int invY = 16;
+	public static final int playerInvX = 8;
+	public static final int playerInvY = 149;
 	
 	private IItemHandler handler;
 	private TileEntityQuadChest te;
