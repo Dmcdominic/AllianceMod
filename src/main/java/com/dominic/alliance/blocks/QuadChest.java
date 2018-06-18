@@ -2,6 +2,7 @@ package com.dominic.alliance.blocks;
 
 import com.dominic.alliance.Main;
 import com.dominic.alliance.client.gui.GuiHandler;
+import com.dominic.alliance.player.Roles;
 import com.dominic.alliance.tileentity.TileEntityQuadChest;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -44,6 +45,10 @@ public class QuadChest extends BlockBase implements ITileEntityProvider {
 		TileEntity te = worldIn.getTileEntity(pos);
 		if (!(te instanceof TileEntityQuadChest)) {
 			return false;
+		}
+		if (!Roles.isWizard(playerIn)) {
+			//return false;
+			return true; // Will this cancel block placements? Should print something to the player's console
 		}
 		playerIn.openGui(Main.instance, GuiHandler.QUAD_CHEST, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;

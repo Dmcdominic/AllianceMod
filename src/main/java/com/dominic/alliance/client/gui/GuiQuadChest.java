@@ -48,7 +48,7 @@ public class GuiQuadChest extends GuiContainer {
 		this.fontRenderer.drawString(s, (xSize - this.mc.fontRenderer.getStringWidth(s)) / 2, 6, 4210752); // Draws the block name in the top-center of the gui
 		
 		int x = ContainerQuadChest.playerInvX;
-		int y = ContainerQuadChest.playerInvY - 9;
+		int y = ContainerQuadChest.playerInvY - 11;
 		this.fontRenderer.drawString(this.playerInv.getDisplayName().getFormattedText(), x, y, 4210752); // Draws the player's inventory name
 		
 	}

@@ -43,7 +43,7 @@ public class ContainerWithPlayerInv extends Container {
 
 	        if (fromSlot < handler.getSlots()) {
 	            // From the block's inventory to player's inventory
-	            if (!this.mergeItemStack(current, handler.getSlots(), handler.getSlots() + 36, true))
+	            if (!this.mergeItemStack(current, handler.getSlots(), handler.getSlots() + 36, false))
 	                return ItemStack.EMPTY;
 	        } else {
 	            // From the player's inventory to block's inventory
