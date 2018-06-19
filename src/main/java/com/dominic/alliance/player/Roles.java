@@ -48,19 +48,19 @@ public class Roles {
 			Console.println(armorList.toString());
 			// Is this the right Console.println()?
 		}
-		return false;
+		return true;
 	}
 	
 	public static boolean isMiner(EntityPlayer player, int tier) {
-		return false;
+		return true;
 	}
 	
 	public static boolean isHunter(EntityPlayer player, int tier) {
-		return false;
+		return true;
 	}
 	
 	public static boolean isHerbalist(EntityPlayer player, int tier) {
-		return false;
+		return true;
 	}
 	
 }

@@ -1,0 +1,30 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:furnace"
+        },
+        "title": {
+            "translate": "advancements.wizardry.root.title"
+        },
+        "description": {
+            "translate": "advancements.wizardry.root.description"
+        },
+        "frame": "challenge",
+        "background": "minecraft:textures/blocks/furnace_front_off.png",
+        "show_toast": true,
+        "announce_to_chat": false
+    },
+    "criteria": {
+        "elytra": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:elytra",
+                        "durability": 431
+                    }
+                ]
+            }
+        }
+    }
+}

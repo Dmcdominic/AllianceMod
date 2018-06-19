@@ -12,3 +12,7 @@ tile.quad_chest.name=Quad Chest
 
 // Containers
 container.quad_chest=Quad Chest
+
+// Advancements
+advancements.wizardry.root.title=Wizardry
+advancements.wizardry.root.description=Begin your wizarding journey by...
