@@ -26,12 +26,13 @@ public class Main {
 	
 	@EventHandler
 	public static void PreInit(FMLPreInitializationEvent event) {
-		ModSmeltingRecipes.init();
+		
 	}
 	
 	@EventHandler
 	public static void Init(FMLInitializationEvent event) {
 		proxy.init();
+		ModSmeltingRecipes.init();
 		
 		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 		RegisterTileEntities();

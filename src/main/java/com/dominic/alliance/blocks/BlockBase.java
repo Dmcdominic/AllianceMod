@@ -20,6 +20,12 @@ public class BlockBase extends Block implements IHasModel {
 		setRegistryName(name);
 		setCreativeTab(ModItems.tabAllianceMod);
 		
+		// Set the default values here
+		setHardness(0.5f);
+		setResistance(10f);
+		setLightLevel(0f); // Light emitted
+		setLightOpacity(15); // Scale: 0 - 15
+		
 		ModBlocks.BLOCKS.add(this);
 		ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));
 	}

@@ -1,8 +1,11 @@
 // Creative tab
 itemGroup.tabAllianceMod=Alliance
 
+
 // Items
 item.pink_ruby.name=Pink Ruby
+item.ingot_osmium.name=Osmium Ingot
+
 
 // Blocks
 tile.pink_ruby_block.name=Block of Pink Ruby
@@ -10,8 +13,13 @@ tile.packed_dirt.name=Packed Dirt
 tile.double_packed_dirt.name=Double Packed Dirt
 tile.quad_chest.name=Quad Chest
 
+tile.ore_osmium.name=Osmium Ore
+tile.block_osmium.name=Block of Osmium
+
+
 // Containers
 container.quad_chest=Quad Chest
+
 
 // Advancements
 advancements.wizardry.root.title=Wizardry

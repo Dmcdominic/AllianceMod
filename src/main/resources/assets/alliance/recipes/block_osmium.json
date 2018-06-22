@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    
+    "pattern": [
+        "iii",
+        "iii",
+        "iii"
+    ],
+    
+    "key": {
+        "i": {
+            "item": "alliance:ingot_osmium"
+        }
+    },
+    
+    "result": {
+        "item": "alliance:block_osmium",
+        "count": 1
+    }
+}

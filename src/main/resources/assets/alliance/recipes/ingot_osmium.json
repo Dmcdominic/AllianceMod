@@ -1,0 +1,12 @@
+{ 
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients": [
+    { "item": "alliance:block_osmium" }
+    ],
+
+    "result": {
+        "item": "alliance:ingot_osmium",
+        "count": 9
+    }
+}

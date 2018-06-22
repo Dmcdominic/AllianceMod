@@ -16,33 +16,14 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class OreGen implements IWorldGenerator {
-
-	// Generate ores by dimension
-	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		switch(world.provider.getDimension()) {
-		case 0:		// Overworld
-			genOverworldOres(random, chunkX, chunkZ, world);
-			break;
-			
-		case -1:	// Nether
-			genNetherOres(random, chunkX, chunkZ, world);
-			break;
-		
-		case 1:		// End
-			genEndOres(random, chunkX, chunkZ, world);
-			break;
-
-		default:	// All other dimensions
-			genOtherOres(random, chunkX, chunkZ, world);
-			break;
-		}
-	}
+	
+	// ================= ORE/BLOCK WORLD-GENERATION =================
 	
 	// OVERWORLD ore generation
 	private void genOverworldOres(Random random, int chunkX, int chunkZ, World world) {
 		// 4, 6, 12, 60
-		runGenerator(ModBlocks.PINK_RUBY_BLOCK.getDefaultState(), 10, 10, 0, 256, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		//runGenerator(ModBlocks.PINK_RUBY_BLOCK.getDefaultState(), 10, 10, 0, 256, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		runGenerator(ModBlocks.ORE_OSMIUM.getDefaultState(), 6, 10, 16, 52, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 	}
 	
 	// NETHER ore generation
@@ -59,6 +40,30 @@ public class OreGen implements IWorldGenerator {
 	private void genOtherOres(Random random, int chunkX, int chunkZ, World world) {
 		// Ores for random dimensions go here
 	}
+	
+	
+	
+	// Generate ores by dimension
+		@Override
+		public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+			switch(world.provider.getDimension()) {
+			case 0:		// Overworld
+				genOverworldOres(random, chunkX, chunkZ, world);
+				break;
+				
+			case -1:	// Nether
+				genNetherOres(random, chunkX, chunkZ, world);
+				break;
+			
+			case 1:		// End
+				genEndOres(random, chunkX, chunkZ, world);
+				break;
+
+			default:	// All other dimensions
+				genOtherOres(random, chunkX, chunkZ, world);
+				break;
+			}
+		}
 	
 	// Generate some number of ore veins in a given dimension and chunk.
 	// Tries to generate a vein "chancesToSpawn" times, with an amount randomly chosen between 1 and blockAmount.
