@@ -46,11 +46,7 @@ public class RegistryHandler {
 				((IHasModel)block).registerModels();
 			}
 		}
-		
-//		ModelResourceLocation model = new ModelResourceLocation("alliance:non_newtonian_fluid", "inventory");
-//		ModelLoader.setCustomModelResourceLocation(ModBlocks.BLOCK_NON_NEWTONIAN_FLUID, 0, model);
 	}
-	
 	
 	
 }

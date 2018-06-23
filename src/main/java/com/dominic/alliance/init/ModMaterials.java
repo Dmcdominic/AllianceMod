@@ -6,6 +6,6 @@ import net.minecraft.block.material.MaterialLiquid;
 
 public class ModMaterials {
 	
-	public static final Material BLACK = new MaterialLiquid(MapColor.BLACK);
+	public static final Material LIQUID_BLACK = new MaterialLiquid(MapColor.BLACK);
 	
 }

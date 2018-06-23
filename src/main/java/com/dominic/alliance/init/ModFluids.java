@@ -6,6 +6,7 @@ import java.util.List;
 import com.dominic.alliance.fluids.FluidBase;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.EnumRarity;
@@ -32,11 +33,10 @@ public class ModFluids {
 	
 	// ================ FLUIDS ================
 	
-	
 	public static final Fluid NON_NEWTONIAN_FLUID = new FluidBase("non_newtonian_fluid",
-			new ResourceLocation("alliance", "non_newtonian_fluid_still"),
-			new ResourceLocation("alliance", "non_newtonian_fluid_flow"),
-			0xFFFFFFFF, 0.2f)
-			.setMaterial(ModMaterials.BLACK).setDensity(800).setLuminosity(2).setRarity(EnumRarity.UNCOMMON).setTemperature(200).setViscosity(700);
+			new ResourceLocation("alliance", "fluids/non_newtonian_fluid_still"),
+			new ResourceLocation("alliance", "fluids/non_newtonian_fluid_flow"),
+			MapColor.BLACK.colorValue, 0.2f)
+			.setMaterial(ModMaterials.LIQUID_BLACK).setDensity(1400).setLuminosity(2).setRarity(EnumRarity.RARE).setTemperature(200).setViscosity(1400);
 	
 }

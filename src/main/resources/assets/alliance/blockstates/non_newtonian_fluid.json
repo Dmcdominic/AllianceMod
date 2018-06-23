@@ -1,15 +1,37 @@
 {
- "forge_marker": 1,
- "defaults": {
-  "model": "forge:fluid"
- },
- "variants": {
-  "normal": [
-   {
-    "custom": {
-     "fluid": "non_newtonian_fluid"
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "all": "alliance:blocks/non_newtonian_fluid_flow"
+        },
+        "model": "forge:fluid",
+        "custom": { "fluid": "non_newtonian_fluid" },
+        "uvlock": false
+    },
+    "variants": {
+        "normal": [{
+
+        }],
+        "inventory": [{
+
+        }],
+        "level": {
+            "0": { },
+            "1": { },
+            "2": { },
+            "3": { },
+            "4": { },
+            "5": { },
+            "6": { },
+            "7": { },
+            "8": { },
+            "9": { },
+            "10": { },
+            "11": { },
+            "12": { },
+            "13": { },
+            "14": { },
+            "15": { }
+        }
     }
-   }
-  ]
- }
 }

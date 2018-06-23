@@ -36,7 +36,7 @@ public class ModBlocks {
 	public static Block BLOCK_NON_NEWTONIAN_FLUID;
 	
 	public static void generateFluidBlocks() {
-		BLOCK_NON_NEWTONIAN_FLUID = new BlockFluidBase("non_newtonian_fluid", ModFluids.NON_NEWTONIAN_FLUID, ModMaterials.BLACK);
+		BLOCK_NON_NEWTONIAN_FLUID = new BlockFluidBase("non_newtonian_fluid", ModFluids.NON_NEWTONIAN_FLUID, ModMaterials.LIQUID_BLACK);
 	}
 	
 }
