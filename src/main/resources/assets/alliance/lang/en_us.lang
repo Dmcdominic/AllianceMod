@@ -17,8 +17,16 @@ tile.ore_osmium.name=Osmium Ore
 tile.block_osmium.name=Block of Osmium
 
 
+// Fluids
+fluid.non_newtonian_fluid=Non-Newtonian Fluid
+
+// Fluid blocks
+tile.non_newtonian_fluid.name=Non-Newtonian Fluid
+
+
 // Containers
 container.quad_chest=Quad Chest
+
 
 
 // Advancements

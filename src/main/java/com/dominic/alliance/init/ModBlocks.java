@@ -5,9 +5,11 @@ import java.util.List;
 
 import com.dominic.alliance.blocks.*;
 import com.dominic.alliance.blocks.miner.*;
+import com.dominic.alliance.fluids.BlockFluidBase;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import scala.Console;
 
 public class ModBlocks {
 
@@ -26,4 +28,15 @@ public class ModBlocks {
 	// Miner
 	public static final Block ORE_OSMIUM = new OreOsmium("ore_osmium", Material.ROCK);
 	public static final Block BLOCK_OSMIUM = new BlockOsmium("block_osmium", Material.IRON);
+	
+	
+	
+	// ================ FLUID BLOCKS ================
+	
+	public static Block BLOCK_NON_NEWTONIAN_FLUID;
+	
+	public static void generateFluidBlocks() {
+		BLOCK_NON_NEWTONIAN_FLUID = new BlockFluidBase("non_newtonian_fluid", ModFluids.NON_NEWTONIAN_FLUID, ModMaterials.BLACK);
+	}
+	
 }
