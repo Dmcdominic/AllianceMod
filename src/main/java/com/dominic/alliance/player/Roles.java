@@ -2,7 +2,6 @@ package com.dominic.alliance.player;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import scala.Console;
 
 public class Roles {
 	
@@ -45,7 +44,7 @@ public class Roles {
 		//List<ItemStack> armorList2 = ArrayList<ItemStack>(armorList);
 		// Need a data type that I can use to check for the right helmet? some kind of "contains"?
 		if (true) {
-			Console.println(armorList.toString());
+			System.out.println(armorList.toString());
 			// Is this the right Console.println()?
 		}
 		return true;

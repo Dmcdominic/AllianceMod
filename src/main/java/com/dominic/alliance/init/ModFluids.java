@@ -36,7 +36,7 @@ public class ModFluids {
 	public static final Fluid NON_NEWTONIAN_FLUID = new FluidBase("non_newtonian_fluid",
 			new ResourceLocation("alliance", "fluids/non_newtonian_fluid_still"),
 			new ResourceLocation("alliance", "fluids/non_newtonian_fluid_flow"),
-			MapColor.BLACK.colorValue, 0.2f)
+			0xFFFFFFFF, 0.2f)
 			.setMaterial(ModMaterials.LIQUID_BLACK).setDensity(1400).setLuminosity(2).setRarity(EnumRarity.RARE).setTemperature(200).setViscosity(1400);
 	
 }

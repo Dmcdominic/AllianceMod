@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dominic.alliance.blocks.*;
+import com.dominic.alliance.blocks.machines.*;
 import com.dominic.alliance.blocks.miner.*;
 import com.dominic.alliance.fluids.BlockFluidBase;
 
@@ -29,6 +30,9 @@ public class ModBlocks {
 	public static final Block ORE_OSMIUM = new OreOsmium("ore_osmium", Material.ROCK);
 	public static final Block BLOCK_OSMIUM = new BlockOsmium("block_osmium", Material.IRON);
 	
+	// Wizard
+	public static final Block LIQUIFIER_LOCKED = new Liquifier("liquifier_locked", Material.IRON, true);
+	public static final Block LIQUIFIER_UNLOCKED = new Liquifier("liquifier_unlocked", Material.IRON, false);
 	
 	
 	// ================ FLUID BLOCKS ================

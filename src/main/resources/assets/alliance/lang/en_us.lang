@@ -16,6 +16,9 @@ tile.quad_chest.name=Quad Chest
 tile.ore_osmium.name=Osmium Ore
 tile.block_osmium.name=Block of Osmium
 
+tile.liquifier_locked.name=Liquifier (Naive)
+tile.liquifier_unlocked.name=Liquifier (Complete)
+
 
 // Fluids
 fluid.non_newtonian_fluid=Non-Newtonian Fluid
