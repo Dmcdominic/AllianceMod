@@ -1,6 +1,12 @@
 {
    "parent": "block/cube_all",
    "textures": {
-       "all": "alliance:blocks/block_osmium"
+       "particle": "alliance:blocks/block_osmium",
+       "up": "alliance:blocks/block_osmium",
+       "down": "alliance:blocks/block_osmium",
+       "north": "alliance:blocks/block_osmium",
+       "south": "alliance:blocks/block_osmium",
+       "east": "alliance:blocks/block_osmium",
+       "west": "alliance:blocks/block_osmium"
    }
 }
