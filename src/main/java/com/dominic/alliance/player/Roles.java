@@ -1,6 +1,8 @@
 package com.dominic.alliance.player;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 
 public class Roles {
@@ -40,12 +42,15 @@ public class Roles {
 	
 	// Player predicates for each role, with tiers
 	public static boolean isWizard(EntityPlayer player, int tier) {
-		Iterable <ItemStack> armorList = player.getArmorInventoryList();
+		ItemStack headEquipment = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
 		//List<ItemStack> armorList2 = ArrayList<ItemStack>(armorList);
 		// Need a data type that I can use to check for the right helmet? some kind of "contains"?
-		if (true) {
-			System.out.println(armorList.toString());
-			// Is this the right Console.println()?
+		System.out.println(headEquipment);
+		System.out.println(headEquipment.getItem());
+		System.out.println(Items.GOLDEN_HELMET);
+		if (headEquipment.getItem() == Items.GOLDEN_HELMET) {
+			System.out.println("SUCCESS!");
+			return true;
 		}
 		return true;
 	}

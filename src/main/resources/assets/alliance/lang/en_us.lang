@@ -4,7 +4,7 @@ itemGroup.tabAllianceMod=Alliance
 
 // ================== ITEMS ==================
 // Universal/shared items
-item.pink_ruby.name=Pink Ruby
+item.pink_ruby.name=The Flag of England
 
 // Wizard items
 item.dust_ashen.name=Ashen Dust
@@ -19,7 +19,7 @@ item.flesh_tame.name=Tame Flesh
 
 
 
-// Blocks
+// ================== BLOCKS ==================
 tile.pink_ruby_block.name=Block of Pink Ruby
 tile.packed_dirt.name=Packed Dirt
 tile.double_packed_dirt.name=Double Packed Dirt
