@@ -2,9 +2,21 @@
 itemGroup.tabAllianceMod=Alliance
 
 
-// Items
+// ================== ITEMS ==================
+// Universal/shared items
 item.pink_ruby.name=Pink Ruby
+
+// Wizard items
+item.dust_ashen.name=Ashen Dust
+
+// Miner items
 item.ingot_osmium.name=Osmium Ingot
+
+// Hunter items
+item.flesh_tame.name=Tame Flesh
+
+// Mountaineer items
+
 
 
 // Blocks

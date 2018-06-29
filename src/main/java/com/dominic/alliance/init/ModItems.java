@@ -33,7 +33,15 @@ public class ModItems {
 	public static final Item PINK_RUBY = new ItemBase("pink_ruby");
 	
 	
+	// Wizard
+	public static final Item DUST_ASHEN = new ItemBase("dust_ashen");
+	
+	
 	// Miner
 	public static final Item INGOT_OSMIUM = new ItemBase("ingot_osmium");
+	
+	
+	// Hunter
+	public static final Item FLESH_TAME = new ItemBase("flesh_tame");
 	
 }
