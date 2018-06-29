@@ -22,23 +22,21 @@ public class Liquifier extends MachineBase {
 	
 	public Liquifier(String name, Material material, boolean locked) {
 		super(name, material, Role.WIZARD, 1, locked);	// Role and tier required
-		
-		// Fill in liquifications here
+	}
+	
+	// ============== Populate the liquifications hashMap here ==============
+	public static void generateLiquifications() {
 		liquifications.put(Blocks.ICE, Blocks.WATER);
 		liquifications.put(Blocks.COBBLESTONE, Blocks.LAVA);
-		
+				
 		liquifications.put(ModBlocks.BLOCK_OSMIUM, ModBlocks.BLOCK_NON_NEWTONIAN_FLUID); // Osmium block is a placeholder: replace with something cooler
 	}
 	
 	@Override
 	public boolean onValidActivation(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		
 		BlockPos toLiquifyPos = pos.down();
 		Block toLiquify = worldIn.getBlockState(toLiquifyPos).getBlock();
-		System.out.println(worldIn.getBlockState(toLiquifyPos));
-		System.out.println(toLiquify);
 		Block outcome = liquifications.get(toLiquify);
-		System.out.println(outcome);
 		
 		if (outcome != null) {
 			IBlockState newBlockState = outcome.getDefaultState();

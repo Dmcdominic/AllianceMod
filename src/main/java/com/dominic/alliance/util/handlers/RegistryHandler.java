@@ -1,5 +1,6 @@
 package com.dominic.alliance.util.handlers;
 
+import com.dominic.alliance.blocks.machines.Liquifier;
 import com.dominic.alliance.init.ModBlocks;
 import com.dominic.alliance.init.ModFluids;
 import com.dominic.alliance.init.ModItems;
@@ -30,6 +31,9 @@ public class RegistryHandler {
 	public static void onBlockRegister(RegistryEvent.Register<Block> event) {
 		ModBlocks.generateFluidBlocks();
 		event.getRegistry().registerAll(ModBlocks.BLOCKS.toArray(new Block[0]));
+		
+		// Generate custom machine recipes
+		Liquifier.generateLiquifications();
 	}
 	
 	// Register all models
