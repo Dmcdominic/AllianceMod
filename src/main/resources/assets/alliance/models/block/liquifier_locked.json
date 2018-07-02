@@ -1,6 +1,12 @@
 {
    "parent": "block/cube_all",
    "textures": {
-       "all": "alliance:blocks/liquifier_locked"
+       "particle": "alliance:blocks/liquifier_side",
+       "up": "alliance:blocks/liquifier_top",
+       "down": "alliance:blocks/liquifier_bottom",
+       "north": "alliance:blocks/liquifier_side",
+       "south": "alliance:blocks/liquifier_side",
+       "east": "alliance:blocks/liquifier_side",
+       "west": "alliance:blocks/liquifier_side"
    }
 }
