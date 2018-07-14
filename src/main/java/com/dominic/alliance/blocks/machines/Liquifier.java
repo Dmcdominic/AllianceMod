@@ -3,6 +3,7 @@ package com.dominic.alliance.blocks.machines;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dominic.alliance.blocks.BlockOrientableBase;
 import com.dominic.alliance.init.ModBlocks;
 import com.dominic.alliance.player.Roles.Role;
 
@@ -14,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class Liquifier extends MachineBase {
@@ -34,7 +36,7 @@ public class Liquifier extends MachineBase {
 	
 	@Override
 	public boolean onValidActivation(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		BlockPos toLiquifyPos = pos.down();
+		BlockPos toLiquifyPos = BlockOrientableBase.getOrientedOffset(pos, new Vec3d(0, -1, 0), worldIn.getBlockState(pos));
 		Block toLiquify = worldIn.getBlockState(toLiquifyPos).getBlock();
 		Block outcome = liquifications.get(toLiquify);
 		
