@@ -6,6 +6,17 @@ itemGroup.tabAllianceMod=Alliance
 // Universal/shared items
 item.pink_ruby.name=The Flag of England
 
+// Tools & Armor
+item.axe_osmium.name=Osmium Axe
+item.hoe_osmium.name=Osmium Hoe
+item.pickaxe_osmium.name=Osmium Pickaxe
+item.shovel_osmium.name=Osmium Shovel
+item.sword_osmium.name=Osmium Sword
+item.helmet_osmium.name=Osmium Helmet
+item.chestplate_osmium.name=Osmium Chestplate
+item.leggings_osmium.name=Osmium Leggings
+item.boots_osmium.name=Osmium Boots
+
 // Wizard items
 item.dust_ashen.name=Ashen Dust
 

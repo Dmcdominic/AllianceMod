@@ -62,7 +62,7 @@ public class ModItems {
 	public static final ArmorMaterial ARMOR_OSMIUM = EnumHelper.addArmorMaterial("armor_osmium", Reference.MOD_ID + ":osmium", 17, new int[]{2, 5, 7, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 	
 	// Tools
-	public static final Item AXE_OSMIUM = new ToolAxe("axe_osmium", TOOL_OSMIUM);
+//	public static final Item AXE_OSMIUM = new ToolAxe("axe_osmium", TOOL_OSMIUM);
 	public static final Item HOE_OSMIUM = new ToolHoe("hoe_osmium", TOOL_OSMIUM);
 	public static final Item PICKAXE_OSMIUM = new ToolPickaxe("pickaxe_osmium", TOOL_OSMIUM);
 	public static final Item SHOVEL_OSMIUM = new ToolShovel("shovel_osmium", TOOL_OSMIUM);
