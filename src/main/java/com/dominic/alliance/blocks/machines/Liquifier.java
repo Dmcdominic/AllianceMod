@@ -28,9 +28,14 @@ public class Liquifier extends MachineBase {
 	
 	// ============== Populate the liquifications hashMap here ==============
 	public static void generateLiquifications() {
+		// ========== Vanilla liquifications ==========
 		liquifications.put(Blocks.ICE, Blocks.WATER);
+		liquifications.put(Blocks.SNOW, Blocks.WATER);
+		
 		liquifications.put(Blocks.COBBLESTONE, Blocks.LAVA);
-				
+		liquifications.put(Blocks.STONE, Blocks.LAVA);
+		
+		// ========== Alliance liquifications ==========
 		liquifications.put(ModBlocks.BLOCK_OSMIUM, ModBlocks.BLOCK_NON_NEWTONIAN_FLUID); // Osmium block is a placeholder: replace with something cooler
 	}
 	
