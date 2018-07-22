@@ -15,56 +15,48 @@ public class Roles {
 	
 	public static boolean isRole(EntityPlayer player, Role role, int tier) {
 		switch (role) {
-			case WIZARD: return isWizard(player, tier);
-			case MINER: return isMiner(player, tier);
-			case HUNTER: return isHunter(player, tier);
-			case HERBALIST: return isHerbalist(player, tier);
+			case WIZARD:	return isWizard(player, tier);
+			case MINER:		return isMiner(player, tier);
+			case HUNTER:	return isHunter(player, tier);
+			case HERBALIST:	return isHerbalist(player, tier);
 		}
 		return false;
 	}
 	
 	// Player predicates for each role
-	public static boolean isWizard(EntityPlayer player) {
-		return isWizard(player, 0);
-	}
-	
-	public static boolean isMiner(EntityPlayer player) {
-		return isMiner(player, 0);
-	}
-	
-	public static boolean isHunter(EntityPlayer player) {
-		return isHunter(player, 0);
-	}
-	
-	public static boolean isHerbalist(EntityPlayer player) {
-		return isHerbalist(player, 0);
-	}
-	
-	// Player predicates for each role, with tiers
-	public static boolean isWizard(EntityPlayer player, int tier) {
+	private static boolean isWizard(EntityPlayer player, int tier) {
 		ItemStack headEquipment = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
-		//List<ItemStack> armorList2 = ArrayList<ItemStack>(armorList);
-		// Need a data type that I can use to check for the right helmet? some kind of "contains"?
-		System.out.println(headEquipment);
-		System.out.println(headEquipment.getItem());
-		System.out.println(Items.GOLDEN_HELMET);
 		if (headEquipment.getItem() == Items.GOLDEN_HELMET) {
 			System.out.println("SUCCESS!");
 			return true;
 		}
+		return false;
+	}
+
+	private static boolean isMiner(EntityPlayer player, int tier) {
+		return true;
+	}
+
+	private static boolean isHunter(EntityPlayer player, int tier) {
+		return true;
+	}
+
+	private static boolean isHerbalist(EntityPlayer player, int tier) {
 		return true;
 	}
 	
-	public static boolean isMiner(EntityPlayer player, int tier) {
-		return true;
+	// Convenience methods for each role predicate without tier requirement
+	private static boolean isWizard(EntityPlayer player) {
+		return isWizard(player, 0);
 	}
-	
-	public static boolean isHunter(EntityPlayer player, int tier) {
-		return true;
+	private static boolean isMiner(EntityPlayer player) {
+		return isMiner(player, 0);
 	}
-	
-	public static boolean isHerbalist(EntityPlayer player, int tier) {
-		return true;
+	private static boolean isHunter(EntityPlayer player) {
+		return isHunter(player, 0);
+	}
+	private static boolean isHerbalist(EntityPlayer player) {
+		return isHerbalist(player, 0);
 	}
 	
 }

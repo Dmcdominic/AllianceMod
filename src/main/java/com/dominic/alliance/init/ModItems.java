@@ -6,6 +6,7 @@ import java.util.List;
 import com.dominic.alliance.items.*;
 import com.dominic.alliance.items.armor.ArmorBase;
 import com.dominic.alliance.items.tools.*;
+import com.dominic.alliance.player.Roles.Role;
 import com.dominic.alliance.util.Reference;
 
 import net.minecraft.creativetab.CreativeTabs;

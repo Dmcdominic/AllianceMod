@@ -21,7 +21,7 @@ public abstract class MachineBase extends BlockOrientableBase {
 	public int tierRequired;
 	public boolean lockedToRole;
 	
-	public MachineBase(String name, Material material, Role role, int tier, boolean locked) {
+	public MachineBase(String name, Material material, Role roleRequiredIn, int tierRequiredIn, boolean lockedToRoleIn) {
 		super(name, material);
 		
 		// Default block properties for machines
@@ -30,15 +30,15 @@ public abstract class MachineBase extends BlockOrientableBase {
 		setResistance(20f); // Explosive resistance
 		setHarvestLevel("pickaxe", 1);
 		
-		this.roleRequired = role;
-		this.tierRequired = tier;
-		this.lockedToRole = locked;
+		this.roleRequired = roleRequiredIn;
+		this.tierRequired = tierRequiredIn;
+		this.lockedToRole = lockedToRoleIn;
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (lockedToRole && !Roles.isRole(playerIn, this.roleRequired, this.tierRequired)) {
-			playerIn.sendStatusMessage(new TextComponentString("Requires a tier " + this.tierRequired + " " + this.roleRequired.toString().toLowerCase()), false);
+			playerIn.sendStatusMessage(new TextComponentString("This machine requires a tier " + this.tierRequired + " " + this.roleRequired.toString().toLowerCase()), false);
 			return true;
 		}
 		
