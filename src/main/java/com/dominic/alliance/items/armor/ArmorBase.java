@@ -13,7 +13,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@EventBusSubscriber
 public class ArmorBase extends ItemArmor implements IHasModel {
 
 	public Role roleRequired;
@@ -43,16 +48,49 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 		Main.proxy.registerItemRenderer(this, 0, "inventory");
 	}
 	
-	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		if (!lockedToRole || roleRequired == null) {
-			return;
+//	@Override
+//	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
+//		if (!lockedToRole || roleRequired == null) {
+//			return;
+//		}
+//		if (!Roles.isRole(player, roleRequired, tierRequired)) {
+//			player.setItemStackToSlot(this.getEquipmentSlot(), ItemStack.EMPTY);
+//			player.addItemStackToInventory(itemStack);
+//			player.sendStatusMessage(new TextComponentString("This armor is only equippable by a tier " + this.tierRequired + " " + this.roleRequired.toString().toLowerCase()), false);
+//		}
+//	}
+	
+	@SubscribeEvent(priority=EventPriority.HIGHEST)
+	public static void LivingEquipmentChange(LivingEquipmentChangeEvent event) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			
+			ItemStack itemEquipped = event.getTo();
+			if (itemEquipped.getItem() instanceof ArmorBase) {
+				((ArmorBase) itemEquipped.getItem()).onArmorEquipped(player, itemEquipped, event.getSlot());
+			}
+
+			ItemStack itemRemoved = event.getFrom();
+			if (itemRemoved.getItem() instanceof ArmorBase) {
+				((ArmorBase) itemRemoved.getItem()).onArmorRemoved(player, itemRemoved, event.getSlot());
+			}
 		}
-		if (!Roles.isRole(player, roleRequired, tierRequired)) {
+	}
+	
+	// Returns true if the armor should be equipped normally
+	// Retruns false if the armor is unequipped by this method
+	public boolean onArmorEquipped(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
+		// If this is locked to a role, but the predicate is not met, remove the armor
+		if (lockedToRole && !Roles.isRole(player, roleRequired, tierRequired) && slot == this.getEquipmentSlot()) {
 			player.setItemStackToSlot(this.getEquipmentSlot(), ItemStack.EMPTY);
-			player.addItemStackToInventory(itemStack);
+			player.addItemStackToInventory(armor);
 			player.sendStatusMessage(new TextComponentString("This armor is only equippable by a tier " + this.tierRequired + " " + this.roleRequired.toString().toLowerCase()), false);
+			return false;
 		}
+		return true;
+	}
+	
+	public void onArmorRemoved(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
 	}
 	
 }
