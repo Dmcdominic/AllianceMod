@@ -71,7 +71,7 @@ public class ModItems {
 	
 	// Armor
 	public static final Item HELMET_OSMIUM = new ArmorBase("helmet_osmium", ARMOR_OSMIUM, 1, EntityEquipmentSlot.HEAD);
-	public static final Item CHESTPLATE_OSMIUM = new ArmorBase("chestplate_osmium", ARMOR_OSMIUM, 1, EntityEquipmentSlot.CHEST);
+	public static final Item CHESTPLATE_OSMIUM = new ArmorBase("chestplate_osmium", ARMOR_OSMIUM, 1, EntityEquipmentSlot.CHEST, Role.WIZARD, 0);
 	public static final Item LEGGINGS_OSMIUM = new ArmorBase("leggings_osmium", ARMOR_OSMIUM, 2, EntityEquipmentSlot.LEGS);
 	public static final Item BOOTS_OSMIUM = new ArmorBase("boots_osmium", ARMOR_OSMIUM, 1, EntityEquipmentSlot.FEET);
 }
