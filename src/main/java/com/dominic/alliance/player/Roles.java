@@ -11,6 +11,7 @@ public class Roles {
 	
 	public static enum Role {WIZARD, MINER, HUNTER, HERBALIST}
 	
+	// Open ended predicates for any role
 	public static boolean isRole(EntityPlayer player, Role role) {
 		return isRole(player, role, 0);
 	}
@@ -45,6 +46,18 @@ public class Roles {
 
 	public static boolean isHerbalist(EntityPlayer player, int tier) {
 		return true;
+	}
+	
+	// Predicate to check a player's eligibility for a RoleIdentifierArmor
+	public static boolean eligibleForIdentifier(EntityPlayer playerIn, Role roleIn, int tierIn) {
+		// TODO
+		return false;
+	}
+	
+	// Predicate to check a player's eligibility to tier up
+	public static boolean eligibleForTierUp(EntityPlayer playerIn, Role roleIn, int nextTierIn) {
+		// TODO
+		return false;
 	}
 	
 }
