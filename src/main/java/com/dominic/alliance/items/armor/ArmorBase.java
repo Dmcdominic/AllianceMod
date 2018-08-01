@@ -5,6 +5,7 @@ import com.dominic.alliance.init.ModItems;
 import com.dominic.alliance.player.Roles;
 import com.dominic.alliance.player.Roles.Role;
 import com.dominic.alliance.util.IHasModel;
+import com.dominic.alliance.util.events.RoleUpdateEvent;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -48,31 +49,19 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 		Main.proxy.registerItemRenderer(this, 0, "inventory");
 	}
 	
-//	@Override
-//	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-//		if (!lockedToRole || roleRequired == null) {
-//			return;
-//		}
-//		if (!Roles.isRole(player, roleRequired, tierRequired)) {
-//			player.setItemStackToSlot(this.getEquipmentSlot(), ItemStack.EMPTY);
-//			player.addItemStackToInventory(itemStack);
-//			player.sendStatusMessage(new TextComponentString("This armor is only equippable by a tier " + this.tierRequired + " " + this.roleRequired.toString().toLowerCase()), false);
-//		}
-//	}
-	
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
-	public static void LivingEquipmentChange(LivingEquipmentChangeEvent event) {
+	public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+			
+			ItemStack itemRemoved = event.getFrom();
+			if (itemRemoved.getItem() instanceof ArmorBase) {
+				((ArmorBase) itemRemoved.getItem()).onArmorRemoved(player, itemRemoved, event.getSlot());
+			}
 			
 			ItemStack itemEquipped = event.getTo();
 			if (itemEquipped.getItem() instanceof ArmorBase) {
 				((ArmorBase) itemEquipped.getItem()).onArmorEquipped(player, itemEquipped, event.getSlot());
-			}
-
-			ItemStack itemRemoved = event.getFrom();
-			if (itemRemoved.getItem() instanceof ArmorBase) {
-				((ArmorBase) itemRemoved.getItem()).onArmorRemoved(player, itemRemoved, event.getSlot());
 			}
 		}
 	}
@@ -80,6 +69,13 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 	// Returns true if the armor should be equipped normally
 	// Retruns false if the armor is unequipped by this method
 	public boolean onArmorEquipped(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
+		return checkArmorSatisfied(player, armor, slot);
+	}
+	
+	public void onArmorRemoved(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
+	}
+	
+	public boolean checkArmorSatisfied(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
 		// If this is locked to a role, but the predicate is not met, remove the armor
 		if (lockedToRole && !Roles.isRole(player, roleRequired, tierRequired) && slot == this.getEquipmentSlot()) {
 			player.setItemStackToSlot(this.getEquipmentSlot(), ItemStack.EMPTY);
@@ -90,7 +86,21 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 		return true;
 	}
 	
-	public void onArmorRemoved(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
+	@SubscribeEvent
+	public static void onRoleUpdate(RoleUpdateEvent event) {
+		System.out.println("GOT THE EVENT: " + event.toString());
+		if (event.getOldRole() == null) {
+			return;
+		}
+
+		EntityPlayer player = event.getEntityPlayer();
+		for (EntityEquipmentSlot slot : EntityEquipmentSlot.values()) {
+			ItemStack armor = player.getItemStackFromSlot(slot);
+			if (armor.getItem() instanceof ArmorBase) {
+				ArmorBase armorType = (ArmorBase) armor.getItem();
+				armorType.checkArmorSatisfied(player, armor, slot);
+			}
+		}
 	}
 	
 }
