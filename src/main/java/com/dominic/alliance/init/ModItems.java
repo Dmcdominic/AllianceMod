@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dominic.alliance.items.*;
 import com.dominic.alliance.items.armor.ArmorBase;
+import com.dominic.alliance.items.armor.RoleIdentifierArmor;
 import com.dominic.alliance.items.tools.*;
 import com.dominic.alliance.player.Roles.Role;
 import com.dominic.alliance.util.Reference;
@@ -42,7 +43,33 @@ public class ModItems {
 	public static final Item PINK_RUBY = new ItemBase("pink_ruby");
 	
 	
-	// ============ CLASS SPECIFIC ============
+	
+	// ============ CLASS HATS =============
+	public static final ArmorMaterial ARMOR_CLASS_IDENTIFIERS = EnumHelper.addArmorMaterial("armor_class_identifiers", Reference.MOD_ID + ":class_identifiers", -1, new int[]{1, 1, 1, 1}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0F);
+	
+	public static final Item WIZARD_HAT_T1 = new RoleIdentifierArmor("wizard_hat_t1", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.WIZARD, 1);
+	public static final Item WIZARD_HAT_T2 = new RoleIdentifierArmor("wizard_hat_t2", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.WIZARD, 2);
+	public static final Item WIZARD_HAT_T3 = new RoleIdentifierArmor("wizard_hat_t3", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.WIZARD, 3);
+	public static final Item WIZARD_HAT_T4 = new RoleIdentifierArmor("wizard_hat_t4", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.WIZARD, 4);
+	
+	public static final Item MINER_HAT_T1 = new RoleIdentifierArmor("miner_hat_t1", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.MINER, 1);
+	public static final Item MINER_HAT_T2 = new RoleIdentifierArmor("miner_hat_t2", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.MINER, 2);
+	public static final Item MINER_HAT_T3 = new RoleIdentifierArmor("miner_hat_t3", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.MINER, 3);
+	public static final Item MINER_HAT_T4 = new RoleIdentifierArmor("miner_hat_t4", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.MINER, 4);
+	
+	public static final Item HUNTER_HAT_T1 = new RoleIdentifierArmor("hunter_hat_t1", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HUNTER, 1);
+	public static final Item HUNTER_HAT_T2 = new RoleIdentifierArmor("hunter_hat_t2", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HUNTER, 2);
+	public static final Item HUNTER_HAT_T3 = new RoleIdentifierArmor("hunter_hat_t3", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HUNTER, 3);
+	public static final Item HUNTER_HAT_T4 = new RoleIdentifierArmor("hunter_hat_t4", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HUNTER, 4);
+	
+	public static final Item HERBALIST_HAT_T1 = new RoleIdentifierArmor("herablist_hat_t1", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HERBALIST, 1);
+	public static final Item HERBALIST_HAT_T2 = new RoleIdentifierArmor("herablist_hat_t2", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HERBALIST, 2);
+	public static final Item HERBALIST_HAT_T3 = new RoleIdentifierArmor("herablist_hat_t3", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HERBALIST, 3);
+	public static final Item HERBALIST_HAT_T4 = new RoleIdentifierArmor("herablist_hat_t4", ARMOR_CLASS_IDENTIFIERS, 1, EntityEquipmentSlot.HEAD, Role.HERBALIST, 4);
+	
+	
+	
+	// ============ CLASS ITEMS ============
 	// Wizard
 	public static final Item DUST_ASHEN = new ItemBase("dust_ashen");
 	

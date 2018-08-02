@@ -8,11 +8,13 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class RoleIdentifierArmor extends ArmorBase {
-	
+
 	public Role role;
 	public int tier;
 
@@ -21,21 +23,21 @@ public class RoleIdentifierArmor extends ArmorBase {
 		role = roleIn;
 		tier = tierIn;
 	}
-	
-	@SubscribeEvent(priority=EventPriority.HIGH)
+
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-			
+
 			ItemStack itemEquipped = event.getTo();
 			ItemStack itemRemoved = event.getFrom();
-			
+
 			boolean roleChanged = false;
 			Role oldRole = null;
 			int oldTier = 0;
 			Role newRole = null;
 			int newTier = 0;
-			
+
 			if (itemRemoved.getItem() instanceof RoleIdentifierArmor) {
 				roleChanged = true;
 				RoleIdentifierArmor armorType = ((RoleIdentifierArmor) itemRemoved.getItem());
