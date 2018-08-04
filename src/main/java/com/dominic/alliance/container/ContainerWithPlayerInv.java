@@ -9,13 +9,15 @@ import net.minecraftforge.items.IItemHandler;
 
 public class ContainerWithPlayerInv extends Container {
 	
+	public static final int playerInvSlotTotal = 36;
+	
 	public ContainerWithPlayerInv(IInventory playerInv, int xOffset, int yOffset) {
 		for (int y = 0; y < 3; ++y) {
 			for (int x = 0; x < 9; ++x) {
 				this.addSlotToContainer(new Slot(playerInv, x + y * 9 + 9, xOffset + x * 18, yOffset + y * 18));
 			}
 		}
-				
+		
 		for (int x = 0; x < 9; ++x) {
 			this.addSlotToContainer(new Slot(playerInv, x, xOffset + x * 18, yOffset + 58));
 		}
@@ -47,16 +49,25 @@ public class ContainerWithPlayerInv extends Container {
 	        previous = current.copy();
 
 	        if (fromSlot < handler.getSlots()) {
-	            // From the block's inventory to player's inventory
-	            if (!this.mergeItemStack(current, handler.getSlots(), handler.getSlots() + 36, false))
-	                return ItemStack.EMPTY;
-	        } else {
-	            // From the player's inventory to block's inventory
+	            // From the player's inventory to the block's inventory
+	        	System.out.println("Trying to merge from block's inventory into player inventory?");
 	        	if (minSlot < 0 || maxSlot > handler.getSlots()) {
 	        		throw new IllegalArgumentException("Given slot range for shift-click merging is not valid");
 	        	}
-	            if (!this.mergeItemStack(current, minSlot, maxSlot, false))
-	                return ItemStack.EMPTY;
+	        	minSlot += playerInvSlotTotal;
+	        	maxSlot += playerInvSlotTotal;
+	        	System.out.println("Trying to merge into limited slot range with minSlot: " + minSlot + " and maxSlot: " + maxSlot);
+//	            if (!this.mergeItemStack(current, handler.getSlots(), handler.getSlots() + 36, false)) {
+	        	if (!this.mergeItemStack(current, minSlot, maxSlot, false)) {
+	                System.out.println("Successfully? merged INTO player inventory?");
+	            	return ItemStack.EMPTY;
+	            }
+	        } else {
+	            // From the block's inventory to the player's inventory
+	        	if (!this.mergeItemStack(current, 0, handler.getSlots(), false)) {
+	                System.out.println("Success(?)");
+	            	return ItemStack.EMPTY;
+	            }
 	        }
 
 	        if (current.getCount() == 0) {
@@ -71,6 +82,14 @@ public class ContainerWithPlayerInv extends Container {
 	        slot.onTake(playerIn, current);
 	    }
 	    return previous;
+	}
+	
+	@Override
+	public boolean canMergeSlot(ItemStack stack, Slot slotIn) {
+		if (slotIn instanceof UninteractableSlot) {
+			return false;
+		}
+		return super.canMergeSlot(stack, slotIn);
 	}
 
 }

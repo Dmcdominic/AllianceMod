@@ -56,19 +56,22 @@ public class ContainerQuadChest2 extends ContainerWithPlayerInv {
 		}
 	}
 	
-	// Allows you to shift-click items into the inventory
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer playerIn, int fromSlot) {
-		Role role = Roles.getRole(playerIn);
-	    return super.transferStackWithHandler(playerIn, fromSlot, handler, getMinSlot(role), getMaxSlot(role));
-//	    return super.transferStackWithHandler(playerIn, fromSlot, this.handler);
-	}
-	
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return te.canInteractWith(player);
 	}
+	
+	// Allows you to shift-click items into the inventory
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int fromSlot) {
+		Role role = Roles.getRole(playerIn);
+		System.out.println("getMinSlot: " + getMinSlot(role));
+		System.out.println("getMaxSlot: " + getMaxSlot(role));
+	    return super.transferStackWithHandler(playerIn, fromSlot, this.handler, getMinSlot(role), getMaxSlot(role));
+//	    return super.transferStackWithHandler(playerIn, fromSlot, this.handler);
+	}
 
+	// Methods to find the range of interactable slots (for shift-clicking)
 	private int getMinSlot(Role role) {
 		for (int i = 0; i < 4; i++) {
 			if (roleRegions[i] == role) {
@@ -81,7 +84,7 @@ public class ContainerQuadChest2 extends ContainerWithPlayerInv {
 	private int getMaxSlot(Role role) {
 		for (int i = 0; i < 4; i++) {
 			if (roleRegions[i] == role) {
-				return i * 9 + 8;
+				return (i + 1) * 9;
 			}
 		}
 		return handler.getSlots();
