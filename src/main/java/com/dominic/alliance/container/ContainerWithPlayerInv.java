@@ -32,8 +32,13 @@ public class ContainerWithPlayerInv extends Container {
 		return !player.isSpectator();
 	}
 	
-	// Allows you to shift-click items into the inventory
+	// Allows you to shift-click items into the inventory [with default slot merge range]
 	public ItemStack transferStackWithHandler(EntityPlayer playerIn, int fromSlot, IItemHandler handler) {
+	    return this.transferStackWithHandler(playerIn, fromSlot, handler, 0, handler.getSlots());
+	}
+	
+	// Shift-clicking with parameters for limited slots to merge into
+	public ItemStack transferStackWithHandler(EntityPlayer playerIn, int fromSlot, IItemHandler handler, int minSlot, int maxSlot) {
 	    ItemStack previous = ItemStack.EMPTY;
 	    Slot slot = (Slot) this.inventorySlots.get(fromSlot);
 
@@ -47,17 +52,22 @@ public class ContainerWithPlayerInv extends Container {
 	                return ItemStack.EMPTY;
 	        } else {
 	            // From the player's inventory to block's inventory
-	            if (!this.mergeItemStack(current, 0, handler.getSlots(), false))
+	        	if (minSlot < 0 || maxSlot > handler.getSlots()) {
+	        		throw new IllegalArgumentException("Given slot range for shift-click merging is not valid");
+	        	}
+	            if (!this.mergeItemStack(current, minSlot, maxSlot, false))
 	                return ItemStack.EMPTY;
 	        }
 
-	        if (current.getCount() == 0)
+	        if (current.getCount() == 0) {
 	            slot.putStack(ItemStack.EMPTY);
-	        else
+	        } else {
 	            slot.onSlotChanged();
-
-	        if (current.getCount() == previous.getCount())
+	        }
+	            
+	        if (current.getCount() == previous.getCount()) {
 	            return null;
+	        }
 	        slot.onTake(playerIn, current);
 	    }
 	    return previous;

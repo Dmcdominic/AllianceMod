@@ -88,7 +88,6 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 	
 	@SubscribeEvent
 	public static void onRoleUpdate(RoleUpdateEvent event) {
-		System.out.println("GOT THE EVENT: " + event.toString());
 		if (event.getOldRole() == null) {
 			return;
 		}

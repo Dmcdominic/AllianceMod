@@ -25,6 +25,7 @@ public class ModBlocks {
 	public static final Block DOUBLE_PACKED_DIRT = new DoublePackedDirt("double_packed_dirt", Material.GROUND);
 	
 	public static final Block QUAD_CHEST = new QuadChest("quad_chest", Material.WOOD);
+	public static final Block QUAD_CHEST_2 = new QuadChest2("quad_chest_2", Material.WOOD);
 	
 	// Miner
 	public static final Block ORE_OSMIUM = new OreOsmium("ore_osmium", Material.ROCK);

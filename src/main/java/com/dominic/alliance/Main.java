@@ -4,6 +4,7 @@ import com.dominic.alliance.init.ModFluids;
 import com.dominic.alliance.init.ModSmeltingRecipes;
 import com.dominic.alliance.proxy.CommonProxy;
 import com.dominic.alliance.tileentity.TileEntityQuadChest;
+import com.dominic.alliance.tileentity.TileEntityQuadChest2;
 import com.dominic.alliance.util.Reference;
 import com.dominic.alliance.worldgen.OreGen;
 
@@ -53,6 +54,7 @@ public class Main {
 	// Register all tile-entities here
 	private static void RegisterTileEntities() {
 		GameRegistry.registerTileEntity(TileEntityQuadChest.class, Reference.MOD_ID + "TileEntityQuadChest");
+		GameRegistry.registerTileEntity(TileEntityQuadChest2.class, Reference.MOD_ID + "TileEntityQuadChest2");
 	}
 	
 }

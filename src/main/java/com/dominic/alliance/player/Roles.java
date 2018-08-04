@@ -36,6 +36,17 @@ public class Roles {
 //		}
 	}
 	
+	// Util method to find out what role a player is. Returns null for no role
+	@Nullable
+	public static Role getRole(EntityPlayer player) {
+		ItemStack headEquipment = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+		if (headEquipment.getItem() instanceof RoleIdentifierArmor) {
+			RoleIdentifierArmor armorType = (RoleIdentifierArmor) headEquipment.getItem();
+			return armorType.role;
+		}
+		return null;
+	}
+	
 	// Convenience methods for player predicates for each role
 	public static boolean isWizard(EntityPlayer player, int tier) {
 		return isRole(player, Role.WIZARD, tier);

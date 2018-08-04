@@ -3,7 +3,7 @@ package com.dominic.alliance.blocks;
 import com.dominic.alliance.Main;
 import com.dominic.alliance.player.Roles;
 import com.dominic.alliance.player.Roles.Role;
-import com.dominic.alliance.tileentity.TileEntityQuadChest;
+import com.dominic.alliance.tileentity.TileEntityQuadChest2;
 import com.dominic.alliance.util.handlers.GuiHandler;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -17,13 +17,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class QuadChest extends BlockBase implements ITileEntityProvider {
+public class QuadChest2 extends BlockBase implements ITileEntityProvider {
 
-	public QuadChest(String name, Material material) {
+	public QuadChest2(String name, Material material) {
 		super(name, material);
 		
 		// Custom properties
@@ -34,7 +35,7 @@ public class QuadChest extends BlockBase implements ITileEntityProvider {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityQuadChest();
+		return new TileEntityQuadChest2();
 	}
 	
 	@Override
@@ -44,20 +45,21 @@ public class QuadChest extends BlockBase implements ITileEntityProvider {
 			return true;
 		}
 		TileEntity te = worldIn.getTileEntity(pos);
-		if (!(te instanceof TileEntityQuadChest)) {
+		if (!(te instanceof TileEntityQuadChest2)) {
 			return false;
 		}
-		if (!Roles.isRole(playerIn, Role.WIZARD)) {
-			//return false;
-			return true; // Will this cancel block placements? Should print something to the player's console
+		if (Roles.getRole(playerIn) != null) {
+			playerIn.openGui(Main.instance, GuiHandler.QUAD_CHEST_2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			return true;
 		}
-		playerIn.openGui(Main.instance, GuiHandler.QUAD_CHEST, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		// TODO - message about role requirement here
+		playerIn.sendStatusMessage(new TextComponentString("This chest is accessible only once you have reached tier 1 of an Alliance class"), false);
 		return true;
 	}
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		TileEntityQuadChest te = (TileEntityQuadChest) worldIn.getTileEntity(pos);
+		TileEntityQuadChest2 te = (TileEntityQuadChest2) worldIn.getTileEntity(pos);
 		IItemHandler handler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 		for (int slot = 0; slot < handler.getSlots(); slot++) {
 			ItemStack stack = handler.getStackInSlot(slot);

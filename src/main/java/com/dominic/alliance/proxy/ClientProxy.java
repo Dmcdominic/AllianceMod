@@ -1,7 +1,7 @@
 package com.dominic.alliance.proxy;
 
 import com.dominic.alliance.Main;
-import com.dominic.alliance.client.gui.GuiHandler;
+import com.dominic.alliance.util.handlers.GuiHandler;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
