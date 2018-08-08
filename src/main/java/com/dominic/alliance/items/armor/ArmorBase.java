@@ -9,6 +9,7 @@ import com.dominic.alliance.util.events.RoleUpdateEvent;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -51,27 +52,41 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 	
 	@SubscribeEvent(priority=EventPriority.HIGHEST)
 	public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
+		if (event.getSlot().getSlotType() != EntityEquipmentSlot.Type.ARMOR) {
+			return;
+		}
+		
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 			
-			ItemStack itemRemoved = event.getFrom();
-			if (itemRemoved.getItem() instanceof ArmorBase) {
-				((ArmorBase) itemRemoved.getItem()).onArmorRemoved(player, itemRemoved, event.getSlot());
-			}
+			ItemStack itemStackRemoved = event.getFrom();
+			ItemStack itemStackEquipped = event.getTo();
 			
-			ItemStack itemEquipped = event.getTo();
-			if (itemEquipped.getItem() instanceof ArmorBase) {
-				((ArmorBase) itemEquipped.getItem()).onArmorEquipped(player, itemEquipped, event.getSlot());
+			Item itemRemoved = itemStackRemoved.getItem();
+			Item itemEquipped = itemStackEquipped.getItem();
+			if (itemRemoved == itemEquipped) {
+				return;
+			}
+				
+			if (itemRemoved instanceof ArmorBase) {
+				((ArmorBase) itemRemoved).onArmorRemoved(player, itemStackRemoved, event.getSlot());
+			}
+			if (itemEquipped instanceof ArmorBase) {
+				((ArmorBase) itemEquipped).onArmorEquipped(player, itemStackEquipped, event.getSlot());
 			}
 		}
 	}
 	
-	// Returns true if the armor should be equipped normally
-	// Retruns false if the armor is unequipped by this method
+	/*
+	 * Override this to do something when this armor is equipped.
+	 * First call super.onArmorEquipped(), and continue iff it returns true.
+	 * @return False if the armor has been unequipped before returning, and true otherwise
+	 */
 	public boolean onArmorEquipped(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
 		return checkArmorSatisfied(player, armor, slot);
 	}
 	
+	// Override this to do something when this armor is unequipped
 	public void onArmorRemoved(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
 	}
 	
@@ -84,6 +99,15 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 			return false;
 		}
 		return true;
+	}
+	
+	// Places the armor from the slot into the players inventory
+	public static void removeArmor(EntityPlayer player, EntityEquipmentSlot slot) {
+		ItemStack armor = player.getItemStackFromSlot(slot);
+		if (armor != null) {
+			player.setItemStackToSlot(slot, ItemStack.EMPTY);
+			player.addItemStackToInventory(armor);
+		}
 	}
 	
 	@SubscribeEvent

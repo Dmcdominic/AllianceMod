@@ -1,6 +1,8 @@
 package com.dominic.alliance.items.armor;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
@@ -15,8 +17,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -41,6 +46,10 @@ public class RoleIdentifierArmor extends ArmorBase {
 	// When a player changes their armor, check if their role has been affected
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
+		if (event.getSlot().getSlotType() != EntityEquipmentSlot.Type.ARMOR) {
+			return;
+		}
+		
 		if (event.getEntityLiving() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
@@ -105,6 +114,50 @@ public class RoleIdentifierArmor extends ArmorBase {
 	// Get the RoleIdentifierArmor for a certain role and tier
 	public static RoleIdentifierArmor getIdentifier(Role roleIn, int tierIn) {
 		return identifierMap.get(new Pair(roleIn, tierIn));
+	}
+	
+	@Override
+	public boolean onArmorEquipped(EntityPlayer player, ItemStack armor, EntityEquipmentSlot slot) {
+		System.out.println("onArmorEquipped triggered");
+		if (!super.onArmorEquipped(player, armor, slot)) {
+			return false;
+		}
+		
+		NBTTagCompound nbt = ItemUtil.getTagCompoundSafe(armor);
+		UUID owner = nbt.getUniqueId("OwnderUUID");
+		if (owner == null) {
+			nbt.setUniqueId("OwnderUUID", player.getUniqueID());
+			nbt.setString("OwnerName", player.getDisplayNameString());
+			armor.setTagCompound(nbt);
+			return true;
+		} else if (owner == player.getUniqueID()) {
+			return true;
+		}
+		this.removeArmor(player, slot);
+		String ownerName = nbt.getString("OwnerName");
+		player.sendStatusMessage(new TextComponentString("This armor is bound to the player: " + ownerName), false);
+		return false;
+	}
+	
+	@SubscribeEvent
+	public static void onItemTooltip(ItemTooltipEvent event) {
+		ItemStack itemStack = event.getItemStack();
+		if (itemStack.getItem() instanceof RoleIdentifierArmor) {
+			RoleIdentifierArmor armorType = (RoleIdentifierArmor) itemStack.getItem();
+			List<String> tooltip = event.getToolTip();
+			tooltip = tooltip.subList(0, 1);
+			
+			tooltip.add("Class: " + armorType.role.toString());
+			tooltip.add("Tier: " + armorType.tier);
+			
+			NBTTagCompound nbt = ItemUtil.getTagCompoundSafe(itemStack);
+			String ownerName = nbt.getString("OwnerName");
+			if (ownerName == "") {
+				tooltip.add("No bound player");
+			} else {
+				tooltip.add("Bound player: " + ownerName);
+			}
+		}
 	}
 	
 }
