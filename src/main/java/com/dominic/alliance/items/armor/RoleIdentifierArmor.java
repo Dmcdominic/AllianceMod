@@ -74,6 +74,7 @@ public class RoleIdentifierArmor extends ArmorBase {
 			if (oldRole != newRole || oldTier != newTier) {
 				RoleUpdateEvent RUEvent = new RoleUpdateEvent(player, oldRole, oldTier, newRole, newTier);
 				MinecraftForge.EVENT_BUS.post(RUEvent);
+				player.refreshDisplayName();
 			}
 		}
 	}

@@ -8,8 +8,13 @@ import com.dominic.alliance.items.armor.RoleIdentifierArmor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.player.PlayerEvent.NameFormat;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class Roles {
 	
 	public static enum Role {WIZARD, MINER, HUNTER, HERBALIST}
@@ -45,6 +50,33 @@ public class Roles {
 			return armorType.role;
 		}
 		return null;
+	}
+	
+	// Util method to find out what tier a player is. Returns -1 for no tier
+	@Nullable
+	public static int getTier(EntityPlayer player) {
+		Item headEquipment = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem();
+		if (headEquipment instanceof RoleIdentifierArmor) {
+			RoleIdentifierArmor armorType = (RoleIdentifierArmor) headEquipment;
+			return armorType.tier;
+		}
+		return -1;
+	}
+	
+	// Add the player's class (role) and tier to their display name
+	@SubscribeEvent
+	public static void onNameFormat(NameFormat event) {
+		Item headEquipment = event.getEntityPlayer().getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem();
+		if (headEquipment instanceof RoleIdentifierArmor) {
+			RoleIdentifierArmor armor = ((RoleIdentifierArmor) headEquipment);
+			
+			String name = event.getDisplayname();
+			String role = armor.role.toString();
+			int tier = armor.tier;
+			
+			name += " - Class: " + role + " - Tier: " + tier;
+			event.setDisplayname(name);
+		}
 	}
 	
 	// Convenience methods for player predicates for each role
